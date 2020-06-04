@@ -3,6 +3,7 @@ const NodeCache = require( "node-cache" );
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 
+require('log-timestamp');
 require('dotenv').config();
 
 const RECEIVERS = process.env.RECEIVERS;
@@ -67,7 +68,6 @@ function notifyAboutNewMarks(number) {
 }
 
 function afterGetMarks(error, response, body) {
-    console.log("Got marks");
     const oldNbMarks = parseInt(cache.get("nbMarks"));
     const newNbMarks = getNumberOfMarks(body);
     if(oldNbMarks && oldNbMarks !== newNbMarks) {

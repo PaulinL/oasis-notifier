@@ -6,11 +6,18 @@
   "scripts": {
     "start": "node app.js"
   },
-  "keywords": ["nodejs", "marks", "api", "cron", "docker"],
+  "keywords": [
+    "nodejs",
+    "marks",
+    "api",
+    "cron",
+    "docker"
+  ],
   "author": "Paulin Lambert",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "log-timestamp": "^0.3.0",
     "node-cache": "^5.1.0",
     "node-cron": "^2.0.3",
     "nodemailer": "^6.4.8",
