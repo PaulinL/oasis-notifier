@@ -27,7 +27,7 @@ console.log("Starting server. Updates every 15 min.");
 console.log("It will notify " + process.env.RECEIVERS);
 console.log("NOTE: On start it cannot know if a new marks has been added as it does not have a reference.");
 makeRequest();
-cron.schedule('*/15 * * * *', makeRequest);
+cron.schedule('*/15 6-21 * * *', makeRequest);
 
 function makeRequest() {
     console.log("Logging in...")
