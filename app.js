@@ -24,11 +24,11 @@ const urls = {
 }
 
 cache.set("nbMarks", null);
-console.log("Starting server. Updates every 15 min between 6am. and 9pm.");
+console.log("Starting server. Updates every 15 min between 6am. and 9pm. on weekdays");
 console.log("It will notify " + process.env.RECEIVERS);
 console.log("NOTE: On start it cannot know if a new marks has been added as it does not have a reference.");
 makeRequest();
-cron.schedule('*/15 6-21 * * *', makeRequest);
+cron.schedule('*/15 6-21 * * 1-5', makeRequest);
 
 function makeRequest() {
     console.log("Logging in...")
