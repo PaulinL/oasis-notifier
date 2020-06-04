@@ -22,6 +22,9 @@ const urls = {
     marks: "https://oasis.polytech.universite-paris-saclay.fr/prod/bo/core/Router/Ajax/ajax.php?targetProject=oasis_polytech_paris&route=BO\\Layout\\MainContent::load&codepage=MYMARKS"
 }
 
+console.log("Starting server. Updates every 15 min.");
+console.log("Sending to " + process.env.RECEIVERS);
+makeRequest();
 cron.schedule('*/15 * * * *', makeRequest);
 
 function makeRequest() {
