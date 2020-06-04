@@ -22,7 +22,7 @@ const urls = {
     marks: "https://oasis.polytech.universite-paris-saclay.fr/prod/bo/core/Router/Ajax/ajax.php?targetProject=oasis_polytech_paris&route=BO\\Layout\\MainContent::load&codepage=MYMARKS"
 }
 
-cron.schedule('* * * * *', makeRequest);
+cron.schedule('*/15 * * * *', makeRequest);
 
 function makeRequest() {
     console.log("Logging in...")
