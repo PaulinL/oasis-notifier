@@ -1,15 +1,14 @@
 {
   "name": "oasis-notifier",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A NodeJS script that look at Oasis (Polytech website where marks can be found) and notify you if a new mark has been added.",
+  "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["nodejs", "marks", "api", "cron", "docker"],
+  "author": "Paulin Lambert",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
     "node-cache": "^5.1.0",
