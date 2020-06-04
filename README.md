@@ -16,3 +16,9 @@ npm install
 ```bash
 npm start
 ```
+
+### Dockerize
+```bash
+docker build -t plambert/oasis-notifier:latest .
+docker-compose up -d
+```
