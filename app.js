@@ -22,8 +22,10 @@ const urls = {
     marks: "https://oasis.polytech.universite-paris-saclay.fr/prod/bo/core/Router/Ajax/ajax.php?targetProject=oasis_polytech_paris&route=BO\\Layout\\MainContent::load&codepage=MYMARKS"
 }
 
+cache.set("nbMarks", null);
 console.log("Starting server. Updates every 15 min.");
-console.log("Sending to " + process.env.RECEIVERS);
+console.log("It will notify " + process.env.RECEIVERS);
+console.log("NOTE: On start is cannot know if a new marks has been added as it does not have a reference.");
 makeRequest();
 cron.schedule('*/15 * * * *', makeRequest);
 
@@ -66,8 +68,8 @@ function notifyAboutNewMarks(number) {
 
 function afterGetMarks(error, response, body) {
     console.log("Got marks");
-    const oldNbMarks = cache.get("nbMarks");
-    const newNbMarks = body.match(/<a.*>Épreuves \((.*)\)<\/a>/)[1];
+    const oldNbMarks = parseInt(cache.get("nbMarks"));
+    const newNbMarks = getNumberOfMarks(body);
     if(oldNbMarks && oldNbMarks !== newNbMarks) {
         notifyAboutNewMarks(newNbMarks - oldNbMarks);
     } else {
@@ -75,6 +77,12 @@ function afterGetMarks(error, response, body) {
     }
     console.log("=============");
     cache.set("nbMarks", newNbMarks);
+}
+
+function getNumberOfMarks(body) {
+    let sum = 0;
+    Array.from(body.matchAll(/<a.*>Épreuves \((.*)\)<\/a>/g)).forEach(match => sum += parseInt(match[1]));
+    return sum;
 }
 
 function parseCookiesFromHeaders(headers) {
