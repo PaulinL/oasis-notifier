@@ -21,8 +21,7 @@ const transporter = nodemailer.createTransport({
 });
 
 client.on('ready', () => {
-    const channel = client.channels.cache.find(i => i.name === process.env.CHANNEL_ID);
-    channel.send(`Bonjour!`);
+    console.log('Discord bot connected');
 });
 client.login(process.env.DISCORD_TOKEN);
 
@@ -82,7 +81,7 @@ function sendMailAboutMarks(number) {
 
 function sendDiscordMessage(number) {
     const channel = client.channels.cache.find(i => i.name === process.env.CHANNEL_ID);
-    channel.send(`${number} nouvelles notes !`);
+    channel.send(`${number} nouvelles notes 🎉🎉🎉\n🔗 : https://oasis.polytech.universite-paris-saclay.fr/#codepage=MYMARKS`);
 }
 
 function afterGetMarks(error, response, body) {
