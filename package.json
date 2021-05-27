@@ -20,7 +20,7 @@
     "log-timestamp": "^0.3.0",
     "node-cache": "^5.1.0",
     "node-cron": "^2.0.3",
-    "nodemailer": "^6.4.8",
+    "nodemailer": "^6.4.16",
     "request": "^2.88.2"
   }
 }
