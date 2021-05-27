@@ -16,6 +16,7 @@
   "author": "Paulin Lambert",
   "license": "MIT",
   "dependencies": {
+    "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "log-timestamp": "^0.3.0",
     "node-cache": "^5.1.0",

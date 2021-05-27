@@ -2,6 +2,8 @@ const request = require('request');
 const NodeCache = require( "node-cache" );
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
+const Discord = require('discord.js');
+const client = new Discord.Client();
 
 require('log-timestamp');
 require('dotenv').config();
@@ -17,6 +19,12 @@ const transporter = nodemailer.createTransport({
         pass: process.env.MAIL_PASSWD
     }
 });
+
+client.on('ready', () => {
+    const channel = client.channels.cache.find(i => i.name === process.env.CHANNEL_ID);
+    channel.send(`Bonjour!`);
+});
+client.login(process.env.DISCORD_TOKEN);
 
 const urls = {
     login: "https://oasis.polytech.universite-paris-saclay.fr/prod/bo/core/Router/Ajax/ajax.php?targetProject=oasis_polytech_paris&route=BO\\Connection\\User::login",
@@ -52,6 +60,11 @@ function afterLogin(error, response, body) {
 }
 
 function notifyAboutNewMarks(number) {
+    sendMailAboutMarks(number);
+    sendDiscordMessage(number);
+}
+
+function sendMailAboutMarks(number) {
     console.log(number + " new mark(s).")
     transporter.sendMail({
         from: process.env.MAIL_ADDR,
@@ -65,6 +78,11 @@ function notifyAboutNewMarks(number) {
             console.log('Email sent: ' + info.response);
         }
     });
+}
+
+function sendDiscordMessage(number) {
+    const channel = client.channels.cache.find(i => i.name === process.env.CHANNEL_ID);
+    channel.send(`${number} nouvelles notes !`);
 }
 
 function afterGetMarks(error, response, body) {
