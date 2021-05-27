@@ -3,5 +3,6 @@ services:
   oasis-notifier:
     container_name: oasis-notifier
     image: plambert/oasis-notifier:latest
+    build: .
     restart: always
     env_file: .env
